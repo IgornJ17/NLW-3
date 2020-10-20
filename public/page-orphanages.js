@@ -15,12 +15,6 @@ const createMap = function(lati=-22.9052436, long=-43.2485414, zoom=15){
     var result = L.map('mapid').setView([lati, long], zoom);
     return result;
 }
-const createMarker = (lati=-22.9052436, long=-43.2485414, msg=stdOrphanage) => {
-   return (L.marker([lati, long], { icon })
-    .addTo(map)
-    .bindPopup(popup)
-    )
-}
 
 function createIcon(){
     var result = L.icon({
@@ -33,24 +27,26 @@ function createIcon(){
     return result;
 }
 
-function createPopUp(){
+
+function addMarker(orphanage){
     var result = L.popup({
         closeButton: false,
         className: 'map-popup',
         minWidth: 240,
         minHeight: 240
     }).setContent(`${stdOrphanage} <a href="/orphanage?id=1" class="choose-orphanage"> <img src="
-    ./images/arrow-white.svg"> </a>`);
+    ./images/arrow-white.svg"> </a>`)
 
-    return result;
+    L.marker([lati, long], { icon })
+    .addTo(map)
+    .bindPopup(popup)
 }
-
 
 
 /*Execucao do codigo main*/
 const map = createMap();
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
-createMarker();
+
 
 
 
