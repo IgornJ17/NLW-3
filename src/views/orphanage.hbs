@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"><!--Tag de adaptacao da pagina a 
+            diversos dispositivos, tag de responsividade-->
+        <title>Detalhes sobre Lar Anália Franco | Happy</title>
+        <link rel="icon" href="/images/logo-icon.png">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin=""/>
+
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+
+        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="/css/main.css">
+        <link rel="stylesheet" href="/css/animations.css">
+        <link rel="stylesheet" href="/css/page-orphanage.css">
+        <link rel="stylesheet" href="/css/sidebar.css">
+        <link rel="stylesheet" href="/css/mapConfig.css">
+        
+    </head>
+    <body id="body">
+        <div id="page-orphanages">
+            <aside class="animate-right sidebar"><!--Elemento que contera a barra lateral da pagina-->
+                <header>
+                    <img src="/images/map-marker.svg" alt="Logo do Happy">
+                </header>
+
+                <footer>
+                    <button onclick="history.go(-1)">
+                        <img src="/images/arrow-back.svg" alt="Volta pagina">
+                    </button>
+                </footer>
+            </aside>
+
+
+
+            <main class="animate-appear with-sidebar" style="flex: 1;">
+                <div class="orphanage-details">
+                    <img src="/images/crianças-brincando.jpg" alt="Lar Anália Franco">
+
+                    <div class="images">
+                        <button class="active" type="button" ondblclick="selectImage(event)">
+                            <img src="/images/lar_analia_1.jpg" alt="Lar Anália Franco">
+                        </button>
+
+                        <button type="button" ondblclick="selectImage(event)">
+                            <img src="/images/lar_analia_2.jpg" alt="Lar Anália Franco">
+                        </button>
+
+                        <button type="button" ondblclick="selectImage(event)">
+                            <img src="/images/lar_analia_3.jpg" alt="Lar Anália Franco">
+                        </button>
+
+                        <button type="button" ondblclick="selectImage(event)">
+                            <img src="/images/lar_analia_4.jpg" alt="Lar Anália Franco">
+                        </button>
+
+                        <button type="button" ondblclick="selectImage(event)">
+                            <img src="/images/lar_analia_5.jpg" alt="Lar Anália Franco">
+                        </button>
+
+                        <button type="button" ondblclick="selectImage(event)">
+                            <img src="/images/lar_analia_6.jpg" alt="Lar Anália Franco">
+                        </button>
+                    </div>
+
+                    <div class="orphanage-detail-content">
+                        <h1>Lar Anália Franco</h1>
+                        <p>Presta assistência a crianças de 06 a 15 anos que se encontre em situação 
+                            de risco e/ou vulnerabilidade social.
+                        </p>
+
+                        <div class="map-container">
+                            <div id="mapid"></div>
+                            <footer>
+                                <a href="">Ver rotas no Google Maps</a>
+                            </footer>
+                        </div>
+
+                        <hr>
+
+                        <h2>Instruções para visita</h2>
+
+                        <p>Venha como se sentir a vontade e traga muito amor e paciência para dar.</p>
+
+                        <div class="open-details">
+                            <div class="hour">
+                                <img src="/images/clock.svg" alt="horarios">
+                                Horário de visitas Das 18h até 8h
+                            </div>
+                            <div class="open-on-weekends">
+                                <img src="/images/info.svg" alt="informacoes">
+                                Atendemos fins de semana
+                            </div>
+                        </div>
+
+                        <button type="button" class="primary-button">
+                            <img src="/images/whatsapp.svg" alt="Chama pelo wpp">
+                            Entrar em contato
+                        </button>
+                    </div>
+
+                </div>
+            <main>            
+        </div>
+        
+        <script src="./page-orphanage.js"></script>
+
+    </body>
+</html>
