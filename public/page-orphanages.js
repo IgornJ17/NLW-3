@@ -1,12 +1,12 @@
 
+//const popup = createPopUp();
 /*Declaracao e definicao das variaveis e constantes que serao utilizadas nesse codigo fonte*/
-const stdOrphanage = "Lar Anália Franco";
+//const stdOrphanage = "Lar Anália Franco";
 
 const imageIcon = '/images/map-marker.svg';
 
 const icon = createIcon();
 
-const popup = createPopUp();
 
 
 
@@ -14,6 +14,17 @@ const popup = createPopUp();
 const createMap = function(lati=-22.9052436, long=-43.2485414, zoom=15){
     var result = L.map('mapid').setView([lati, long], zoom);
     return result;
+}
+
+const createPopUp = function(orphanage){
+    var result = L.popup({
+        closeButton: false,
+        className: 'map-popup',
+        minWidth: 240,
+        minHeight: 240
+    }).setContent(`${orphanage.name} <a href="/orphanage?id=${orphanage.id}"> <img src="./images/arrow-white.svg"> </a>`);
+    
+        return result;
 }
 
 function createIcon(){
@@ -28,16 +39,8 @@ function createIcon(){
 }
 
 
-function addMarker(orphanage){
-    var result = L.popup({
-        closeButton: false,
-        className: 'map-popup',
-        minWidth: 240,
-        minHeight: 240
-    }).setContent(`${stdOrphanage} <a href="/orphanage?id=1" class="choose-orphanage"> <img src="
-    ./images/arrow-white.svg"> </a>`)
-
-    L.marker([lati, long], { icon })
+function addMarker(orphanage, popup){ 
+    L.marker([orphanage.lat, orphanage.lng], { icon })
     .addTo(map)
     .bindPopup(popup)
 }
@@ -47,6 +50,19 @@ function addMarker(orphanage){
 const map = createMap();
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
+const orphanageSpans = document.querySelectorAll(".orphanages span")
+
+orphanageSpans.forEach((data) => {
+    var orphanageData = {
+        id: data.dataset.id,
+        name: data.dataset.name,
+        lat: data.dataset.lat,
+        lng: data.dataset.lng
+    }
+    var popup = createPopUp(orphanageData);   
+
+    addMarker(orphanageData, popup);
+})
 
 
 

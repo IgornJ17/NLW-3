@@ -34,23 +34,30 @@
 
                 <footer>
                     <strong>Rio de janeiro</strong>
-                    <p>RJ</p>
+                        <p>RJ</p>
                 </footer>
             </aside>
 
             <div id="mapid" class="animate-appear"></div><!--Elemento generico que contera o mapa de localizacao-->
 
-            {{#each orphanages}}
-                <span hidden 
-                    data-id="{{this.id}}"
-                    data-name="{{this.name}}"
-                    data-lat="{{this.location.lat}}"
-                    data-lng="{{this.location.lng}}"
-                ></span>
+            <div class="orphanages">
 
-            {{/each}}
+                {{#each dataOrphanages}}
+                    <span hidden 
+                        data-id="{{this.id}}"
+                        data-name="{{this.name}}"
+                        data-lat="{{this.lat}}"
+                        data-lng="{{this.lng}}"
+                    ></span>
+                {{/each}}
 
-                <a href="/createOrphanage" class="create-orphanage" title="Cadastre um orfanato">
+            </div>    
+
+                <a 
+                    href="/createOrphanage" 
+                    class="create-orphanage" 
+                    title="Cadastre um orfanato"
+                >
                     <img src="/images/plus.svg" alt="Cria orfanato">
                 </a>
             

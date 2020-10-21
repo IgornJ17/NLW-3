@@ -1,4 +1,4 @@
-const orphanages = require('./database/fakedata.js');
+const dataOrphanages = require('./database/fakedata.js');
 
 module.exports = {
 
@@ -16,7 +16,7 @@ module.exports = {
     },
 
     orphanages(req, res){
-        return res.render('orphanages', { orphanages })
+        return res.render('orphanages', { dataOrphanages })
     },
 
     createOrphanage(req, res){
