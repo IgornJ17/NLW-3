@@ -7,9 +7,6 @@ const imageIcon = '/images/map-marker.svg';
 
 const icon = createIcon();
 
-
-
-
 /*Declaracao e definicao das funcoes e variaveis de referencia a funcoes que serao utilizadas no codigo*/
 const createMap = function(lati=-22.9052436, long=-43.2485414, zoom=15){
     var result = L.map('mapid').setView([lati, long], zoom);

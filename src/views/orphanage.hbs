@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0"><!--Tag de adaptacao da pagina a 
             diversos dispositivos, tag de responsividade-->
-        <title>Detalhes sobre Lar Anália Franco | Happy</title>
+        <title>Detalhes sobre {{ orphanage.name }} | Happy</title>
         <link rel="icon" href="/images/logo-icon.png">
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
         integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
@@ -40,36 +40,19 @@
 
             <main class="animate-appear with-sidebar" style="flex: 1;">
                 <div class="orphanage-details">
-                    <img src="/images/crianças-brincando.jpg" alt="Lar Anália Franco">
+                    <img src="{{orphanage.firstImage}}" alt="{{ orphanage.name }}">
 
                     <div class="images">
+                    {{#each orphanage.images}}
                         <button class="active" type="button" ondblclick="selectImage(event)">
-                            <img src="/images/lar_analia_1.jpg" alt="Lar Anália Franco">
+                            <img src="{{this}}" alt="{{ orphanage.name }}">
                         </button>
-
-                        <button type="button" ondblclick="selectImage(event)">
-                            <img src="/images/lar_analia_2.jpg" alt="Lar Anália Franco">
-                        </button>
-
-                        <button type="button" ondblclick="selectImage(event)">
-                            <img src="/images/lar_analia_3.jpg" alt="Lar Anália Franco">
-                        </button>
-
-                        <button type="button" ondblclick="selectImage(event)">
-                            <img src="/images/lar_analia_4.jpg" alt="Lar Anália Franco">
-                        </button>
-
-                        <button type="button" ondblclick="selectImage(event)">
-                            <img src="/images/lar_analia_5.jpg" alt="Lar Anália Franco">
-                        </button>
-
-                        <button type="button" ondblclick="selectImage(event)">
-                            <img src="/images/lar_analia_6.jpg" alt="Lar Anália Franco">
-                        </button>
+                    {{/each}}
+                        
                     </div>
 
                     <div class="orphanage-detail-content">
-                        <h1>Lar Anália Franco</h1>
+                        <h1>{{ orphanage.name }}</h1>
                         <p>Presta assistência a crianças de 06 a 15 anos que se encontre em situação 
                             de risco e/ou vulnerabilidade social.
                         </p>
@@ -85,16 +68,20 @@
 
                         <h2>Instruções para visita</h2>
 
-                        <p>Venha como se sentir a vontade e traga muito amor e paciência para dar.</p>
+                        <p>{{ orphanage.instructions}} </p>
 
                         <div class="open-details">
                             <div class="hour">
                                 <img src="/images/clock.svg" alt="horarios">
-                                Horário de visitas Das 18h até 8h
+                                {{ orphanage.visit_hours}}
                             </div>
                             <div class="open-on-weekends">
                                 <img src="/images/info.svg" alt="informacoes">
-                                Atendemos fins de semana
+                                {{#if orphanage.visit_on_weekends}}
+                                    Atendemos fins de semana
+                                {{else}}
+                                    Nao atendemos fins de semana
+                                {{/if}}
                             </div>
                         </div>
 
