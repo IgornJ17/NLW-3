@@ -1,6 +1,6 @@
 const database = require('./database/db.js');
-const saveOrphanage = require('./database/saveOrphanage.js')
-
+const saveOrphanage = require('./database/saveOrphanage.js');
+const Functions = require('./aux_functions.js');
 
 module.exports = {
 
@@ -15,16 +15,10 @@ module.exports = {
 
     async orphanage(req, res){
         const id = req.query.id;
-
         try {
-            const db = await database;
-            const selectOrphanage = await db.all(`SELECT * FROM orphanages WHERE id = "${id}"`)
-            const orphanage = selectOrphanage[0]
-            orphanage.images = orphanage.images.split(',')
-            orphanage.firstImage = orphanage.images[0];
-            orphanage.visit_on_weekends = false;
-
+            const orphanage = await Functions.selectOrphanageWithId(id);
             return res.render('orphanage', { orphanage })
+
         } catch (error) {
             console.log(error.message)
             return res.send('Error no banco de dados.')
@@ -34,9 +28,9 @@ module.exports = {
 
     async orphanages(req, res){
         try {
-            const db = await database;
-            const dataOrphanages = await db.all(" SELECT * FROM orphanages");
-            return res.render('orphanages', {dataOrphanages})
+            const dataOrphanages = await Functions.selectAllOrphanages();
+            console.log(dataOrphanages);
+            return res.render('orphanages', { dataOrphanages })
         } catch (error) {
             console.log(error.message)
             return res.send('Error no banco de dados.')
@@ -45,6 +39,30 @@ module.exports = {
 
     createOrphanage(req, res){
         return res.render('createOrphanage')
+    },
+
+    async saveDataOrphanage(req, res){
+        const fields = req.body
+        console.log(fields)
+        Functions.validField(fields);
+        try{
+            const db = await database;
+            await saveOrphanage(db, {
+                name: fields.name,
+                description: fields.about,
+                images: fields.image.toString(),
+                lat: fields.lat,
+                lng: fields.lng,
+                wpp: fields.wpp,
+                instructions: fields.instructions,
+                visitHour: fields['visit_hour'],
+                visitOnWeekends: fields['on-weekends']
+            })
+
+            res.redirect('/orphanages')
+        }catch(error){
+            console.log(error.message)
+        }
     }
 
 }

@@ -59,8 +59,14 @@
 
                         <div class="map-container">
                             <div id="mapid"></div>
+                            <span 
+                            data-lat="{{ orphanage.lat }}"
+                            data-lng="{{ orphanage.lng }}">
+                            </span>
                             <footer>
-                                <a href="">Ver rotas no Google Maps</a>
+                                <a 
+                                target="_blank"
+                                href="https://maps.google.com/mobile?q={{ orphanage.lat }},{{ orphanage.lng }}&z=15">Ver rotas no Google Maps</a>
                             </footer>
                         </div>
 
@@ -75,20 +81,28 @@
                                 <img src="/images/clock.svg" alt="horarios">
                                 {{ orphanage.visit_hours}}
                             </div>
-                            <div class="open-on-weekends">
+                            {{#if orphanage.visit_on_weekends}}
+                            <div class="open-on-weekends open">
                                 <img src="/images/info.svg" alt="informacoes">
-                                {{#if orphanage.visit_on_weekends}}
-                                    Atendemos fins de semana
-                                {{else}}
-                                    Nao atendemos fins de semana
-                                {{/if}}
+                                Atendemos fins de semana
                             </div>
+                            {{else}}
+                            <div class="open-on-weekends closed">
+                                <img src="/images/info-red.svg" alt="informacoes">
+                                Nao atendemos fins de semana   
+                            </div>
+                            {{/if}}
                         </div>
 
-                        <button type="button" class="primary-button">
-                            <img src="/images/whatsapp.svg" alt="Chama pelo wpp">
-                            Entrar em contato
-                        </button>
+                        <a target="_blank" 
+                            href="https://api.whatsapp.com/send?l=pt_BR&phone={{orphanage.wpp}}" 
+                            type="button" 
+                            class="primary-button">
+                                <img 
+                                src="/images/whatsapp.svg" 
+                                alt="Chama pelo wpp">
+                                Entrar em contato
+                        </a>
                     </div>
 
                 </div>

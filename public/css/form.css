@@ -76,6 +76,10 @@ fieldset + fieldset{
     border: 1px solid #a1e9c5;
 }
 
+.input-block .empty{
+    border: 2px solid #8B0000;
+}
+
 .input-block textarea{
     width: 54.8rem;
     height: 12.0rem;

@@ -80,9 +80,35 @@ function selectWeekends(event){
 
     openOnWeekendsInput.value = nodeSelect.dataset.value;
     console.log(openOnWeekendsInput.value)
+}
 
-    
-    
+function validateFields(event){
+    //event.preventDefault();
+    let dadosForm = {
+        lat : selectElement('[name="lat"]'),
+        lng : selectElement('[name="lng"]'),
+        name : selectElement('[name="name"]'),
+        about : selectElement('[name="about"]'), 
+        wpp : selectElement('[name="wpp"]'),
+        instructions : selectElement('[name="instructions"]'),
+        visit_hour : selectElement('[name="visit-hour"]')
+    }
+
+    var i = 0
+    var voidFilds = [];
+    Object.values(dadosForm).forEach(function(value){
+        if(value == '' || value == undefined || value == null ){
+            voidFilds[i].push(value)
+        }
+    })
+    if(voidFilds.length > 1){
+        alert("Dados nao preenchidos corretamente")
+        for(let i = 0; i < voidFilds.length; i++){
+            voidFilds[i].classList.add("empty");
+        }
+    }
+    return;
+}
     
     
     
@@ -114,9 +140,6 @@ function selectWeekends(event){
         (nodeFather.children[0].classList.contains("active")) ? switchForNo() : switchForYes();
     }
     */
-}
-
-
 
 
 
